@@ -1235,7 +1235,7 @@ func isValidBigIntString(s string, roundTripOnly bool) bool {
 	// * scanning proceeded without error
 	// * a bigint can be scanned, and that when it is scanned, it is
 	// * the full length of the input string (so the scanner is one character beyond the augmented input length)
-	// * it does not contain a numeric seperator (the `BigInt` constructor does not accept a numeric seperator in its input)
+	// * it does not contain a numeric separator (the `BigInt` constructor does not accept a numeric separator in its input)
 	return success && result == ast.KindBigIntLiteral && scanner.TokenEnd() == len(s)+1 && flags&ast.TokenFlagsContainsSeparator == 0 &&
 		(!roundTripOnly || s == pseudoBigIntToString(jsnum.PseudoBigInt{Negative: negative, Base10Value: jsnum.ParsePseudoBigInt(scanner.TokenValue())}))
 }

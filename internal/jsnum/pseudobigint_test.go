@@ -8,6 +8,8 @@ import (
 )
 
 func TestParsePseudoBigInt(t *testing.T) {
+	t.Parallel()
+
 	var testNumbers []Number
 	for i := range int64(1e3) {
 		testNumbers = append(testNumbers, Number(i))
@@ -17,6 +19,7 @@ func TestParsePseudoBigInt(t *testing.T) {
 	}
 
 	t.Run("strip base-10 strings", func(t *testing.T) {
+		t.Parallel()
 		for _, testNumber := range testNumbers {
 			for leadingZeros := range 10 {
 				assert.Equal(
@@ -31,6 +34,7 @@ func TestParsePseudoBigInt(t *testing.T) {
 	// TODO(jakebailey): tests for other bases
 
 	t.Run("can parse large literals", func(t *testing.T) {
+		t.Parallel()
 		assert.Equal(t, ParsePseudoBigInt("123456789012345678901234567890n"), "123456789012345678901234567890")
 		assert.Equal(t, ParsePseudoBigInt("0b1100011101110100100001111111101101100001101110011111000001110111001001110001111110000101011010010n"), "123456789012345678901234567890")
 		assert.Equal(t, ParsePseudoBigInt("0o143564417755415637016711617605322n"), "123456789012345678901234567890")
